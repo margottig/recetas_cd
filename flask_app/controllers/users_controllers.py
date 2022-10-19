@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, session, flash
+from flask import render_template, redirect, request, session, flash, jsonify
 from flask_app import app
 from flask_bcrypt import Bcrypt
 from flask_app.models.user_models import User
@@ -29,15 +29,28 @@ def registro():
     session ['usuario_id'] = usuario_id
     return redirect ('/welcome')
 
+
 @app.route('/login', methods=['POST'])
 def login():
-    usuario_loggeado = User.validar_login(request.form)
-    print(usuario_loggeado, 'QUE CONTIENES ESTO_')
-    if not usuario_loggeado[0]:
-        return redirect("/")
+    #usuario_loggeado = User.validar_login(request.form)
+    #print(usuario_loggeado, 'QUE CONTIENES ESTO_')
+    #if not usuario_loggeado[0]:
+    #    return redirect("/")
     # guardamos el id del usuario registrado en la sesion para empezar a darle seguimiento
-    session['usuario_id'] = usuario_loggeado[1].id
-    return redirect('/welcome')
+    #session['usuario_id'] = usuario_loggeado[1].id
+    #return redirect('/welcome')
+   
+    mensaje = {}
+    usuario = User.obtener_email(request.form)
+    if not usuario:
+        mensaje['ok'] = False
+        mensaje['content'] = " No encontramos ese email"
+        return jsonify(mensaje)
+
+    mensaje['ok'] = True
+
+    session['usuario_id'] = usuario.id
+    return jsonify(mensaje)
 
 
 @app.route('/welcome')
