@@ -18,7 +18,14 @@
       </nav>
 
 <!-- formulario de Alicia Saravia -->
-    <form action="/crear_receta" method = "post">
+    <form action="/crear_receta" method = "post" enctype="multipart/form-data">
+        {% with messages = get_flashed_messages() %}
+                    {% if messages %}                           
+                        {% for message in messages %}          
+                            <p class="text-danger">{{message}}</p> 
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
         <div class="d-flex flex-row justify-content-around">
             <div class="w-50">
                 <div class="form-group row">
@@ -37,6 +44,12 @@
                     <label for="colFormLabelSm" class="col-sm-2 col-form-label">Instrucción</label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control form-control-sm" id="colFormLabelSm" name="instruction">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="colFormLabelSm" class="col-sm-2 col-form-label">Imagen Receta</label>
+                    <div class="col-sm-8">
+                        <input type="file" class="form-control form-control-sm" id="imagen_receta" name="imagenreceta">
                     </div>
                 </div>
             </div>
@@ -69,7 +82,8 @@
             </div>
         </div>
     </form> 
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="{{url_for('static', filename='js/img_validator.js')}}"></script>
 
 
 

@@ -29,6 +29,7 @@ CREATE TABLE `recipes` (
   `name` varchar(45) DEFAULT NULL,
   `description` text,
   `instruction` text,
+  `nombre_imagen` varchar(255) DEFAULT NULL,
   `date_made` date DEFAULT NULL,
   `under` varchar(45) DEFAULT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
@@ -37,18 +38,12 @@ CREATE TABLE `recipes` (
   PRIMARY KEY (`id`),
   KEY `fk_recipes_users_idx` (`user_id`),
   CONSTRAINT `fk_recipes_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `recipes`
 --
-
-LOCK TABLES `recipes` WRITE;
-/*!40000 ALTER TABLE `recipes` DISABLE KEYS */;
-INSERT INTO `recipes` VALUES (1,'Tiramisu','Dulce','Dulce','2022-10-12','1','2022-10-07 09:50:06','2022-10-07 09:50:06',1);
-/*!40000 ALTER TABLE `recipes` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `users`
@@ -66,19 +61,13 @@ CREATE TABLE `users` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `users`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Sonic','Sega','ss@mail.com','$2b$12$0cw0FKxujqqqR.9Mi37SxOZAWPLILPs79suz/p.C4CKt4VnKx8exW','2022-10-07 08:52:59','2022-10-07 08:52:59'),(2,'Sailormoon','Sailormoon','sm@mail.com','$2b$12$G2w2EOilqGWbUOBy551DUO.ebHm138fkDEr3LasSk53396FhqF9iu','2022-10-07 10:23:15','2022-10-07 10:23:15');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
@@ -88,4 +77,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-07 12:46:11
+-- Dump completed on 2022-10-20 12:20:20

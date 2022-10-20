@@ -10,6 +10,7 @@ class Recipes:
         self.name = data['name']
         self.description = data['description']
         self.instruction = data['instruction']
+        self.nombre_imagen = data['nombre_imagen']
         self.under = data['under']
         self.date_made = data['date_made']
         self.created_at = data['created_at']
@@ -19,8 +20,8 @@ class Recipes:
 
     @classmethod
     def crear_receta(cls, data):
-        consulta = """ INSERT INTO recipes (name, description, date_made, under,  instruction, user_id )
-                        VALUES( %(name)s, %(description)s, %(date_made)s, %(under)s, %(instruction)s, %(usuario_id)s);"""
+        consulta = """ INSERT INTO recipes (name, description, date_made, under, instruction, nombre_imagen, user_id )
+                        VALUES( %(name)s, %(description)s, %(date_made)s, %(under)s, %(instruction)s, %(nombre_imagen)s, %(usuario_id)s);"""
         resultado = connectToMySQL('recetas_usuarios').query_db(consulta, data)
         return resultado
     
@@ -32,6 +33,12 @@ class Recipes:
         for receta in resultado:
             todas_las_recetas.append(cls(receta))
         return todas_las_recetas   
+    
+    @classmethod
+    def una_receta(cls, variable):
+        consulta = "SELECT * FROM recipes WHERE id = %(id_receta)s;"
+        resultado = connectToMySQL(cls.db).query_db(consulta, variable)
+        return cls(resultado[0])
     
     @classmethod
     def recetas_con_usuarios(cls):

@@ -39,7 +39,7 @@
                 {% if receta.user_id == session['usuario_id'] %}
                 <a href="/editar/receta">EDITAR</a>
                 <a href="/eleminar/receta">Eliminar</a>
-                <a href="/ver/receta">VER</a>  
+                <a href="/ver/receta/{{receta.id}}">VER</a>  
                 {% else %}
                 <a href="/ver/receta">VER</a>
                 {% endif %}
